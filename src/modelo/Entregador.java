@@ -11,8 +11,17 @@ package modelo;
  */
 public class Entregador extends Pessoa {
     
+    private Integer id;
     private Veiculo veiculo;
 
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+    
     public Veiculo getVeiculo() {
         return veiculo;
     }

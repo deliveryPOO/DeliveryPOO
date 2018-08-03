@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import modelo.Administrador;
+import modelo.Cliente;
 import modelo.Endereco;
 import modelo.Telefone;
 
@@ -21,51 +21,47 @@ import modelo.Telefone;
  *
  * @author vinicius
  */
-public class AdministradorDao {
-    public List<Administrador> read() {
+public class ClienteDAO {
+    public List<Cliente> read() {
         Connection con;
         con = Conexao.getConnection();
         PreparedStatement stmt = null;
         ResultSet rs = null;
         
-        List<Administrador> administradores = new ArrayList<>();
+        List<Cliente> clientes = new ArrayList<>();
         
         try {
-            stmt = con.prepareStatement("SELECT * FROM administrador");
+            stmt = con.prepareStatement("SELECT * FROM cliente");
             rs = stmt.executeQuery();
             
             while(rs.next()) {
-                Administrador a = new Administrador();
+                Cliente a = new Cliente();
                 
                 a.setNome(rs.getString("nome"));
                 a.setCpf(rs.getLong("cpf"));
-                a.setUsuario(rs.getString("usuario"));
-                a.setSenha(rs.getString("senha"));
                 a.setEndereco(EnderecoDAO.read(rs.getInt("id")));
                 a.setTelefone(TelefoneDAO.read(rs.getInt("id")));
-                administradores.add(a);
+                clientes.add(a);
             }
         } catch (SQLException ex) {
-            Logger.getLogger(AdministradorDao.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ClienteDAO.class.getName()).log(Level.SEVERE, null, ex);
         } finally{
             Conexao.closeConnection(con, stmt, rs);
         }
         
-        return administradores;
+        return clientes;
     }
     
-    public void create(Administrador p, Endereco e, Telefone t) {
+    public void create(Cliente p, Endereco e, Telefone t) {
         Connection con;
         con = Conexao.getConnection();
         PreparedStatement stmt = null;
         ResultSet rs = null;
         
         try {
-            stmt = con.prepareStatement("INSERT INTO administrador (nome, cpf, usuario, senha) VALUES (?, ?, ?, ?)");
+            stmt = con.prepareStatement("INSERT INTO cliente (nome, cpf) VALUES (?, ?)");
             stmt.setString(1, p.getNome());
             stmt.setLong(2, p.getCpf());
-            stmt.setString(3, p.getUsuario());
-            stmt.setString(4, p.getSenha());
             rs = stmt.executeQuery();
         
             stmt = con.prepareStatement("SELECT LAST_INSERT_ID()");
@@ -75,28 +71,26 @@ public class AdministradorDao {
             TelefoneDAO.create(t, rs.getInt(1));
         
         } catch (SQLException ex) {
-            Logger.getLogger(AdministradorDao.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ClienteDAO.class.getName()).log(Level.SEVERE, null, ex);
         } finally{
             Conexao.closeConnection(con, stmt, rs);
         }
     }
     
-    public void update(Administrador p) {
+    public void update(Cliente p) {
         Connection con;
         con = Conexao.getConnection();
         PreparedStatement stmt = null;
         ResultSet rs = null;
         
         try {
-            stmt = con.prepareStatement("UPDATE administrador set nome = ?, cpf = ? usuario = ?, senha = ? WHERE id = ?");
+            stmt = con.prepareStatement("UPDATE cliente set nome = ?, cpf = ? WHERE id = ?");
             stmt.setString(1, p.getNome());
             stmt.setLong(2, p.getCpf());
-            stmt.setString(3, p.getUsuario());
-            stmt.setString(4, p.getSenha());
             stmt.setInt(5, p.getId());
             rs = stmt.executeQuery();        
         } catch (SQLException ex) {
-            Logger.getLogger(AdministradorDao.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ClienteDAO.class.getName()).log(Level.SEVERE, null, ex);
         } finally{
             Conexao.closeConnection(con, stmt, rs);
         }

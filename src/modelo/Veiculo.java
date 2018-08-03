@@ -10,10 +10,21 @@ package modelo;
  * @author User
  */
 public class Veiculo {
+    private Integer id;
     private String placa;
     private String modelo;
     private String cor;
 
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    
+    
     public String getPlaca() {
         return placa;
     }

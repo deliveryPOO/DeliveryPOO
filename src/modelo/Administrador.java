@@ -11,9 +11,19 @@ package modelo;
  */
 public class Administrador extends Pessoa {
     
+    private Integer id;
+    
     private String usuario;
     private String senha;
 
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+    
     public String getUsuario() {
         return usuario;
     }

@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import modelo.Administrador;
+import modelo.Atendente;
 import modelo.Endereco;
 import modelo.Telefone;
 
@@ -21,21 +21,21 @@ import modelo.Telefone;
  *
  * @author vinicius
  */
-public class AdministradorDao {
-    public List<Administrador> read() {
+public class AtendenteDAO {
+    public List<Atendente> read() {
         Connection con;
         con = Conexao.getConnection();
         PreparedStatement stmt = null;
         ResultSet rs = null;
         
-        List<Administrador> administradores = new ArrayList<>();
+        List<Atendente> atendentes = new ArrayList<>();
         
         try {
-            stmt = con.prepareStatement("SELECT * FROM administrador");
+            stmt = con.prepareStatement("SELECT * FROM atendente");
             rs = stmt.executeQuery();
             
             while(rs.next()) {
-                Administrador a = new Administrador();
+                Atendente a = new Atendente();
                 
                 a.setNome(rs.getString("nome"));
                 a.setCpf(rs.getLong("cpf"));
@@ -43,25 +43,25 @@ public class AdministradorDao {
                 a.setSenha(rs.getString("senha"));
                 a.setEndereco(EnderecoDAO.read(rs.getInt("id")));
                 a.setTelefone(TelefoneDAO.read(rs.getInt("id")));
-                administradores.add(a);
+                atendentes.add(a);
             }
         } catch (SQLException ex) {
-            Logger.getLogger(AdministradorDao.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AtendenteDAO.class.getName()).log(Level.SEVERE, null, ex);
         } finally{
             Conexao.closeConnection(con, stmt, rs);
         }
         
-        return administradores;
+        return atendentes;
     }
     
-    public void create(Administrador p, Endereco e, Telefone t) {
+    public void create(Atendente p, Endereco e, Telefone t) {
         Connection con;
         con = Conexao.getConnection();
         PreparedStatement stmt = null;
         ResultSet rs = null;
         
         try {
-            stmt = con.prepareStatement("INSERT INTO administrador (nome, cpf, usuario, senha) VALUES (?, ?, ?, ?)");
+            stmt = con.prepareStatement("INSERT INTO atendente (nome, cpf, usuario, senha) VALUES (?, ?, ?, ?)");
             stmt.setString(1, p.getNome());
             stmt.setLong(2, p.getCpf());
             stmt.setString(3, p.getUsuario());
@@ -75,20 +75,20 @@ public class AdministradorDao {
             TelefoneDAO.create(t, rs.getInt(1));
         
         } catch (SQLException ex) {
-            Logger.getLogger(AdministradorDao.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AtendenteDAO.class.getName()).log(Level.SEVERE, null, ex);
         } finally{
             Conexao.closeConnection(con, stmt, rs);
         }
     }
     
-    public void update(Administrador p) {
+    public void update(Atendente p) {
         Connection con;
         con = Conexao.getConnection();
         PreparedStatement stmt = null;
         ResultSet rs = null;
         
         try {
-            stmt = con.prepareStatement("UPDATE administrador set nome = ?, cpf = ? usuario = ?, senha = ? WHERE id = ?");
+            stmt = con.prepareStatement("UPDATE atendente set nome = ?, cpf = ? usuario = ?, senha = ? WHERE id = ?");
             stmt.setString(1, p.getNome());
             stmt.setLong(2, p.getCpf());
             stmt.setString(3, p.getUsuario());
@@ -96,7 +96,7 @@ public class AdministradorDao {
             stmt.setInt(5, p.getId());
             rs = stmt.executeQuery();        
         } catch (SQLException ex) {
-            Logger.getLogger(AdministradorDao.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AtendenteDAO.class.getName()).log(Level.SEVERE, null, ex);
         } finally{
             Conexao.closeConnection(con, stmt, rs);
         }

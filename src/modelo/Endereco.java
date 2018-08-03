@@ -5,18 +5,29 @@
  */
 package modelo;
 
+import java.util.List;
+
 /**
  *
  * @author User
  */
-class Endereco {
+public class Endereco {
     
+    private Integer id;
     private String rua;
     private Integer numero;
     private String bairro;
     private String complemento;
     private String pontoRef;
 
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+    
     public String getRua() {
         return rua;
     }
@@ -56,6 +67,5 @@ class Endereco {
     public void setPontoRef(String pontoRef) {
         this.pontoRef = pontoRef;
     }
-    
     
 }

@@ -9,7 +9,7 @@ package modelo;
  *
  * @author User
  */
-class Item {
+public class Item {
     
     private String nome;
     private double valor;

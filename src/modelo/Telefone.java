@@ -5,18 +5,31 @@
  */
 package modelo;
 
+import java.util.List;
+
 /**
  *
  * @author User
  */
-class Telefone {
-    
+public class Telefone {
+
+    private Integer id;
     private Byte ddd;
     private Integer numero;
 
     public Byte getDdd() {
         return ddd;
     }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+    
+    
 
     public void setDdd(Byte ddd) {
         this.ddd = ddd;
