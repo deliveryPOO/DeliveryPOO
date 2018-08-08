@@ -123,23 +123,29 @@
             <Component class="javax.swing.JButton" name="jButton5">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/gui/icons/icons8-pilha-80.png"/>
+                  <Image iconType="3" name="/gui/icons/icons8-caixa-80.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Estoque"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton5ActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="jButton1">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/gui/icons/icons8-card&#xe1;pio-80.png"/>
+                  <Image iconType="3" name="/gui/icons/icons8-cart&#xe3;o-de-s&#xf3;cio-do-restaurante-80.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Cardapio"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="jButton2">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/gui/icons/icons8-motocicleta-80.png"/>
+                  <Image iconType="3" name="/gui/icons/icons8-capacete-de-moto-80.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Entregadores"/>
               </Properties>
