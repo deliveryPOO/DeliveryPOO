@@ -70,6 +70,11 @@ public class JanelaEditarPedido extends javax.swing.JInternalFrame {
 
         btnEditar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/icons/icons8-editar-20.png"))); // NOI18N
         btnEditar.setText("Editar Cliente");
+        btnEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditarActionPerformed(evt);
+            }
+        });
 
         tbPedido.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -206,6 +211,12 @@ public class JanelaEditarPedido extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
+       TelaEditarCliente t=new TelaEditarCliente();
+        TelaPrincipal.jDesktopPane1.add(t);
+        t.setVisible(true);
+    }//GEN-LAST:event_btnEditarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

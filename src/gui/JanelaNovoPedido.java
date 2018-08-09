@@ -69,12 +69,22 @@ public class JanelaNovoPedido extends javax.swing.JInternalFrame {
 
         btnNovo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/icons/icons8-mais-20.png"))); // NOI18N
         btnNovo.setText("Novo cliente");
+        btnNovo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNovoActionPerformed(evt);
+            }
+        });
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel3.setText("Produtos");
 
         btnEditar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/icons/icons8-editar-20.png"))); // NOI18N
         btnEditar.setText("Editar Cliente");
+        btnEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditarActionPerformed(evt);
+            }
+        });
 
         tbProdutos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -219,6 +229,18 @@ public class JanelaNovoPedido extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoActionPerformed
+        TelaCadastrarCliente t=new TelaCadastrarCliente();
+        TelaPrincipal.jDesktopPane1.add(t);
+        t.setVisible(true);
+    }//GEN-LAST:event_btnNovoActionPerformed
+
+    private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
+        TelaEditarCliente t=new TelaEditarCliente();
+        TelaPrincipal.jDesktopPane1.add(t);
+        t.setVisible(true);
+    }//GEN-LAST:event_btnEditarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

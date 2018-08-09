@@ -57,6 +57,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(41, 94, 78));
 
+        btnPedidos.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
         btnPedidos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/icons/icons8-carrinho-de-compras-80 (2).png"))); // NOI18N
         btnPedidos.setText("Pedidos");
         btnPedidos.addActionListener(new java.awt.event.ActionListener() {
@@ -65,6 +66,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
         });
 
+        btnEstoque.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
         btnEstoque.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/icons/icons8-caixa-80.png"))); // NOI18N
         btnEstoque.setText("Estoque");
         btnEstoque.addActionListener(new java.awt.event.ActionListener() {
@@ -73,6 +75,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
         });
 
+        btnCardapio.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
         btnCardapio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/icons/icons8-cartão-de-sócio-do-restaurante-80.png"))); // NOI18N
         btnCardapio.setText("Cardapio");
         btnCardapio.addActionListener(new java.awt.event.ActionListener() {
@@ -81,6 +84,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
         });
 
+        btnEntregadores.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
         btnEntregadores.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/icons/icons8-capacete-de-moto-80.png"))); // NOI18N
         btnEntregadores.setText("Entregadores");
         btnEntregadores.addActionListener(new java.awt.event.ActionListener() {
@@ -89,6 +93,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
         });
 
+        btnClientes.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
         btnClientes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/icons/icons8-client-management-80.png"))); // NOI18N
         btnClientes.setText("Clientes");
         btnClientes.addActionListener(new java.awt.event.ActionListener() {
@@ -97,6 +102,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
         });
 
+        btnAdmins.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
         btnAdmins.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/icons/icons8-gerente-80 (1).png"))); // NOI18N
         btnAdmins.setText("Admins");
         btnAdmins.addActionListener(new java.awt.event.ActionListener() {
@@ -105,6 +111,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
         });
 
+        btnAtendentes.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
         btnAtendentes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/icons/icons8-online-support-80 (2).png"))); // NOI18N
         btnAtendentes.setText("Atendentes");
         btnAtendentes.addActionListener(new java.awt.event.ActionListener() {

@@ -36,13 +36,17 @@ public class TelaLogin extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jPanel2.setBackground(new java.awt.Color(41, 94, 78));
+
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/icons/icons8-entrega-de-comida-100 (1).png"))); // NOI18N
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/icons/icons8-usuário-de-gênero-neutro-48.png"))); // NOI18N
         jLabel1.setText("Login");
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/icons/icons8-senha-48.png"))); // NOI18N
         jLabel3.setText("Senha");
 
