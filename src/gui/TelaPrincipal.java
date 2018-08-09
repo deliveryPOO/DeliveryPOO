@@ -5,6 +5,10 @@
  */
 package gui;
 
+import java.awt.Graphics;
+import java.awt.Image;
+import javax.swing.ImageIcon;
+import javax.swing.JDesktopPane;
 import javax.swing.JInternalFrame;
 
 /**
@@ -19,7 +23,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
     public TelaPrincipal() {
         initComponents();
     }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -38,14 +41,21 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jButton3 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
         jButton7 = new javax.swing.JButton();
-        jDesktopPane1 = new javax.swing.JDesktopPane();
+        ImageIcon icon = new ImageIcon(getClass().getResource("/gui/icons/fundo.jpg"));
+        final Image image= icon.getImage();
+        jDesktopPane1 = new javax.swing.JDesktopPane(){
+            public  void paintComponent(Graphics g){
+                g.drawImage(image,0,0,getWidth(),getHeight(),this);
+            }
+        }
+        ;
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setSize(new java.awt.Dimension(0, 0));
 
-        jPanel1.setBackground(new java.awt.Color(230, 230, 230));
+        jPanel1.setBackground(new java.awt.Color(41, 94, 78));
 
-        jPanel2.setBackground(new java.awt.Color(230, 230, 230));
+        jPanel2.setBackground(new java.awt.Color(41, 94, 78));
 
         jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/icons/icons8-carrinho-de-compras-80 (2).png"))); // NOI18N
         jButton4.setText("Pedidos");
