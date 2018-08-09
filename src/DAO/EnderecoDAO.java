@@ -54,21 +54,22 @@ public class EnderecoDAO {
         return enderecos;
     }
     
-    public static void create(Endereco e, int idPessoa) {
+    public static void create(Endereco e, String tipoPessoa, int idPessoa) {
         Connection con;
         con = Conexao.getConnection();
         PreparedStatement stmt = null;
         ResultSet rs = null;
         
         try {
-            stmt = con.prepareStatement("INSERT INTO endereco(rua, numero, bairro, complemento, pontoRef, idPessoa) VALUES (?,?,?,?,?,?)");
+            stmt = con.prepareStatement("INSERT INTO endereco(rua, numero, bairro, complemento, pontoRef,"
+                                         + tipoPessoa + " ) VALUES (?,?,?,?,?,?);");
             stmt.setString(1, e.getRua());
             stmt.setInt(2, e.getNumero());
             stmt.setString(3, e.getBairro());
             stmt.setString(4, e.getComplemento());
             stmt.setString(5, e.getPontoRef());
             stmt.setInt(6, idPessoa);
-            rs = stmt.executeQuery();
+            stmt.executeUpdate();
             
         } catch (SQLException ex) {
             Logger.getLogger(EnderecoDAO.class.getName()).log(Level.SEVERE, null, ex);

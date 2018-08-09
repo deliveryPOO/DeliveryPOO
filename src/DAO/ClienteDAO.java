@@ -22,7 +22,7 @@ import modelo.Telefone;
  * @author vinicius
  */
 public class ClienteDAO {
-    public List<Cliente> read() {
+    public static List<Cliente> read(String key) {
         Connection con;
         con = Conexao.getConnection();
         PreparedStatement stmt = null;
@@ -31,7 +31,9 @@ public class ClienteDAO {
         List<Cliente> clientes = new ArrayList<>();
         
         try {
-            stmt = con.prepareStatement("SELECT * FROM cliente");
+            stmt = con.prepareStatement("SELECT * FROM cliente INNER JOIN telefone ON cliente.idcliente ="
+                                        + "telefone.cliente_idcliente WHERE nome = ?;");
+            stmt.setString(1,key);
             rs = stmt.executeQuery();
             
             while(rs.next()) {
@@ -52,23 +54,31 @@ public class ClienteDAO {
         return clientes;
     }
     
-    public void create(Cliente p, Endereco e, Telefone t) {
+    public static void create(Cliente p, Endereco e, Telefone t) {
         Connection con;
         con = Conexao.getConnection();
         PreparedStatement stmt = null;
         ResultSet rs = null;
         
         try {
-            stmt = con.prepareStatement("INSERT INTO cliente (nome, cpf) VALUES (?, ?)");
+            stmt = con.prepareStatement("INSERT INTO cliente (nome, cpf) VALUES (?, ?);");
             stmt.setString(1, p.getNome());
             stmt.setLong(2, p.getCpf());
-            rs = stmt.executeQuery();
+            stmt.executeUpdate();
         
-            stmt = con.prepareStatement("SELECT LAST_INSERT_ID()");
+            stmt.close();
+            
+            stmt = con.prepareStatement("SELECT MAX(idcliente) FROM cliente;");
             rs = stmt.executeQuery();
             
-            EnderecoDAO.create(e, rs.getInt(1));
-            TelefoneDAO.create(t, rs.getInt(1));
+            int idPessoa = 0;
+            while(rs.next())
+            {
+                idPessoa = rs.getInt(1);
+            }
+            
+            EnderecoDAO.create(e, "cliente_idcliente", idPessoa);
+            TelefoneDAO.create(t, "cliente_idcliente", idPessoa);
         
         } catch (SQLException ex) {
             Logger.getLogger(ClienteDAO.class.getName()).log(Level.SEVERE, null, ex);

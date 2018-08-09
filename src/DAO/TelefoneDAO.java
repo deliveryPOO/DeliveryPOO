@@ -51,18 +51,19 @@ public class TelefoneDAO {
     }
     
     
-    public static void create(Telefone t, int idPessoa) {
+    public static void create(Telefone t, String tipoPessoa, int idPessoa) {
         Connection con;
         con = Conexao.getConnection();
         PreparedStatement stmt = null;
         ResultSet rs = null;
         
         try {
-            stmt = con.prepareStatement("INSERT INTO telefone(ddd, numero) VALUES (?,?)");
+            stmt = con.prepareStatement("INSERT INTO telefone(ddd, numero," +
+                                        tipoPessoa + ") VALUES (?,?, ?);");
             stmt.setByte(1, t.getDdd());
             stmt.setInt(2, t.getNumero());
             stmt.setInt(3, idPessoa);
-            rs = stmt.executeQuery();
+            stmt.executeUpdate();
             
         } catch (SQLException ex) {
             Logger.getLogger(TelefoneDAO.class.getName()).log(Level.SEVERE, null, ex);
