@@ -34,13 +34,13 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
+        btnPedidos = new javax.swing.JButton();
+        btnEstoque = new javax.swing.JButton();
+        btnCardapio = new javax.swing.JButton();
+        btnEntregadores = new javax.swing.JButton();
+        btnClientes = new javax.swing.JButton();
+        btnAdmins = new javax.swing.JButton();
+        btnAtendentes = new javax.swing.JButton();
         ImageIcon icon = new ImageIcon(getClass().getResource("/gui/icons/fundo.jpg"));
         final Image image= icon.getImage();
         jDesktopPane1 = new javax.swing.JDesktopPane(){
@@ -57,59 +57,59 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(41, 94, 78));
 
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/icons/icons8-carrinho-de-compras-80 (2).png"))); // NOI18N
-        jButton4.setText("Pedidos");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        btnPedidos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/icons/icons8-carrinho-de-compras-80 (2).png"))); // NOI18N
+        btnPedidos.setText("Pedidos");
+        btnPedidos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                btnPedidosActionPerformed(evt);
             }
         });
 
-        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/icons/icons8-caixa-80.png"))); // NOI18N
-        jButton5.setText("Estoque");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
+        btnEstoque.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/icons/icons8-caixa-80.png"))); // NOI18N
+        btnEstoque.setText("Estoque");
+        btnEstoque.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+                btnEstoqueActionPerformed(evt);
             }
         });
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/icons/icons8-cartão-de-sócio-do-restaurante-80.png"))); // NOI18N
-        jButton1.setText("Cardapio");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnCardapio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/icons/icons8-cartão-de-sócio-do-restaurante-80.png"))); // NOI18N
+        btnCardapio.setText("Cardapio");
+        btnCardapio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnCardapioActionPerformed(evt);
             }
         });
 
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/icons/icons8-capacete-de-moto-80.png"))); // NOI18N
-        jButton2.setText("Entregadores");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnEntregadores.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/icons/icons8-capacete-de-moto-80.png"))); // NOI18N
+        btnEntregadores.setText("Entregadores");
+        btnEntregadores.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnEntregadoresActionPerformed(evt);
             }
         });
 
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/icons/icons8-client-management-80.png"))); // NOI18N
-        jButton3.setText("Clientes");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        btnClientes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/icons/icons8-client-management-80.png"))); // NOI18N
+        btnClientes.setText("Clientes");
+        btnClientes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                btnClientesActionPerformed(evt);
             }
         });
 
-        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/icons/icons8-gerente-80 (1).png"))); // NOI18N
-        jButton6.setText("Admins");
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
+        btnAdmins.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/icons/icons8-gerente-80 (1).png"))); // NOI18N
+        btnAdmins.setText("Admins");
+        btnAdmins.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
+                btnAdminsActionPerformed(evt);
             }
         });
 
-        jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/icons/icons8-online-support-80 (2).png"))); // NOI18N
-        jButton7.setText("Atendentes");
-        jButton7.addActionListener(new java.awt.event.ActionListener() {
+        btnAtendentes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/icons/icons8-online-support-80 (2).png"))); // NOI18N
+        btnAtendentes.setText("Atendentes");
+        btnAtendentes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton7ActionPerformed(evt);
+                btnAtendentesActionPerformed(evt);
             }
         });
 
@@ -120,15 +120,15 @@ public class TelaPrincipal extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(27, 27, 27)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnAtendentes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnAdmins, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jButton2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 216, Short.MAX_VALUE)
-                            .addComponent(jButton1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(btnEntregadores, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 216, Short.MAX_VALUE)
+                            .addComponent(btnCardapio, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnEstoque, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnPedidos, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnClientes, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addGap(23, 23, 23))
         );
@@ -136,19 +136,19 @@ public class TelaPrincipal extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButton4)
+                .addComponent(btnPedidos)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnEstoque, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnCardapio, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnEntregadores, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnAdmins, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnAtendentes, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(368, Short.MAX_VALUE))
         );
 
@@ -192,47 +192,47 @@ public class TelaPrincipal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    private void btnPedidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPedidosActionPerformed
         JanelaGerenciarPedidos t=new JanelaGerenciarPedidos();
         jDesktopPane1.add(t);
         t.setVisible(true);        
-    }//GEN-LAST:event_jButton4ActionPerformed
+    }//GEN-LAST:event_btnPedidosActionPerformed
 
-    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+    private void btnAtendentesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtendentesActionPerformed
         TelaAtendente t = new TelaAtendente();
         jDesktopPane1.add(t);
         t.setVisible(true);
-    }//GEN-LAST:event_jButton7ActionPerformed
+    }//GEN-LAST:event_btnAtendentesActionPerformed
 
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+    private void btnAdminsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdminsActionPerformed
         TelaAdministrador t = new TelaAdministrador();
         jDesktopPane1.add(t);
         t.setVisible(true);
-    }//GEN-LAST:event_jButton6ActionPerformed
+    }//GEN-LAST:event_btnAdminsActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void btnClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClientesActionPerformed
         TelaCliente t = new TelaCliente();
         jDesktopPane1.add(t);
         t.setVisible(true);
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_btnClientesActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void btnEntregadoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntregadoresActionPerformed
        TelaEntregador t = new TelaEntregador();
         jDesktopPane1.add(t);
         t.setVisible(true);
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_btnEntregadoresActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnCardapioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCardapioActionPerformed
         JanelaGerenciarCardapio t=new JanelaGerenciarCardapio();
         jDesktopPane1.add(t);
         t.setVisible(true);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnCardapioActionPerformed
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+    private void btnEstoqueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEstoqueActionPerformed
         JanelaGerenciarEstoque t=new JanelaGerenciarEstoque();
         jDesktopPane1.add(t);
         t.setVisible(true);
-    }//GEN-LAST:event_jButton5ActionPerformed
+    }//GEN-LAST:event_btnEstoqueActionPerformed
 
     /**
      * @param args the command line arguments
@@ -272,13 +272,13 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
+    private javax.swing.JButton btnAdmins;
+    private javax.swing.JButton btnAtendentes;
+    private javax.swing.JButton btnCardapio;
+    private javax.swing.JButton btnClientes;
+    private javax.swing.JButton btnEntregadores;
+    private javax.swing.JButton btnEstoque;
+    private javax.swing.JButton btnPedidos;
     public static javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
