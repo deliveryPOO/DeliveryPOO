@@ -15,6 +15,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import modelo.Cliente;
 import modelo.Endereco;
+import modelo.Pessoa;
 import modelo.Telefone;
 
 /**
@@ -31,18 +32,17 @@ public class ClienteDAO {
         List<Cliente> clientes = new ArrayList<>();
         
         try {
-            stmt = con.prepareStatement("SELECT * FROM cliente INNER JOIN telefone ON cliente.idcliente ="
-                                        + "telefone.cliente_idcliente WHERE nome = ?;");
+            stmt = con.prepareStatement("SELECT * FROM cliente WHERE nome = ?;");
             stmt.setString(1,key);
             rs = stmt.executeQuery();
             
             while(rs.next()) {
                 Cliente a = new Cliente();
                 
+                a.setId(rs.getInt("idcliente"));
                 a.setNome(rs.getString("nome"));
                 a.setCpf(rs.getLong("cpf"));
-                a.setEndereco(EnderecoDAO.read(rs.getInt("id")));
-                a.setTelefone(TelefoneDAO.read(rs.getInt("id")));
+                a.setTelefone(TelefoneDAO.read(rs.getInt("idcliente")));
                 clientes.add(a);
             }
         } catch (SQLException ex) {
@@ -52,6 +52,36 @@ public class ClienteDAO {
         }
         
         return clientes;
+    }
+    
+    
+    public static Cliente read(int key) {
+        Connection con;
+        con = Conexao.getConnection();
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        
+        Cliente cliente = new Cliente();
+        
+        try {
+            stmt = con.prepareStatement("SELECT * FROM cliente WHERE idcliente = ?;");
+            stmt.setInt(1,key);
+            rs = stmt.executeQuery();
+            
+            while(rs.next()) {                
+                cliente.setId(rs.getInt("idcliente"));
+                cliente.setNome(rs.getString("nome"));
+                cliente.setCpf(rs.getLong("cpf"));
+                cliente.setTelefone(TelefoneDAO.read(rs.getInt("idcliente")));
+                cliente.setEndereco(EnderecoDAO.read(rs.getInt("idcliente")));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ClienteDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally{
+            Conexao.closeConnection(con, stmt, rs);
+        }
+        
+        return cliente;
     }
     
     public static void create(Cliente p, Endereco e, Telefone t) {

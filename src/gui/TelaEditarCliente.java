@@ -5,6 +5,12 @@
  */
 package gui;
 
+import DAO.ClienteDAO;
+import javax.swing.table.DefaultTableModel;
+import modelo.Cliente;
+import modelo.Endereco;
+import modelo.Telefone;
+
 /**
  *
  * @author Cyborg
@@ -13,9 +19,11 @@ public class TelaEditarCliente extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form TelaEditarCliente
+     * @param idCliente
      */
-    public TelaEditarCliente() {
+    public TelaEditarCliente(int idCliente) {
         initComponents();
+        loadFields(ClienteDAO.read(idCliente));
     }
 
     /**
@@ -56,21 +64,21 @@ public class TelaEditarCliente extends javax.swing.JInternalFrame {
 
         tbEndereco.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Rua", "Número", "Complemento", "Referência"
+                "Rua", "Número", "Bairro", "Complemento", "Referência"
             }
         ));
         jScrollPane1.setViewportView(tbEndereco);
@@ -203,6 +211,34 @@ public class TelaEditarCliente extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void loadFields(Cliente cliente) {
+        txtNome.setText(cliente.getNome());
+        txtCpf.setText(cliente.getCpf().toString());
+        
+        DefaultTableModel modeloTableT = (DefaultTableModel)tbTelefone.getModel();
+        modeloTableT.setNumRows(0);
+        
+        for(Telefone t: cliente.getTelefone()) {
+            modeloTableT.addRow(new Object[]{
+                t.getDdd(),
+                t.getNumero()
+            });
+        }
+        
+        DefaultTableModel modeloTableE = (DefaultTableModel)tbEndereco.getModel();
+        modeloTableE.setNumRows(0);
+        
+        for(Endereco e: cliente.getEndereco()) {
+            modeloTableE.addRow(new Object[]{
+                e.getRua(),
+                e.getNumero(),
+                e.getBairro(),
+                e.getComplemento(),
+                e.getPontoRef()
+            });
+        }
+    }
+    
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnSalvarActionPerformed

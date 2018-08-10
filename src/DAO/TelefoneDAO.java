@@ -30,7 +30,7 @@ public class TelefoneDAO {
         List<Telefone> telefones = new ArrayList<>();
         
         try {
-            stmt = con.prepareStatement("SELECT * FROM telefone WHERE id_pessoa = ?");
+            stmt = con.prepareStatement("SELECT * FROM telefone WHERE cliente_idcliente = ?");
             stmt.setInt(1, idPessoa);
             rs = stmt.executeQuery();
             

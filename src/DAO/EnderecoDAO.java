@@ -30,14 +30,13 @@ public class EnderecoDAO {
         List<Endereco> enderecos = new ArrayList<>();
         
         try {
-            stmt = con.prepareStatement("SELECT * FROM endereco WHERE id_pessoa = ?");
+            stmt = con.prepareStatement("SELECT * FROM endereco WHERE cliente_idcliente = ?");
             stmt.setInt(1, idPessoa);
             rs = stmt.executeQuery();
             
             
             while(rs.next()) {
                 Endereco a = new Endereco();
-                
                 a.setRua(rs.getString("rua"));
                 a.setNumero(rs.getInt("numero"));
                 a.setBairro(rs.getString("bairro"));
