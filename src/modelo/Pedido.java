@@ -13,69 +13,52 @@ import java.util.List;
  */
 public class Pedido {
     
-   private Integer numeroPedido;
-   private Cliente cliente;
-   private List<Produto> pedidos;
-   private FormaPagmt formaPagmento;
-   private Entregador entregador;
-   private Atendente atendente;
+   private Integer cliente;
+   private Integer formaPagmento;
+   private Integer entregador;
+   private Integer atendente;
+   private String obs;
 
-    public Integer getNumeroPedido() {
-        return numeroPedido;
-    }
-
-    public void setNumeroPedido(Integer numeroPedido) {
-        this.numeroPedido = numeroPedido;
-    }
-
-    public Cliente getCliente() {
+    public Integer getCliente() {
         return cliente;
     }
 
-    public void setCliente(Cliente cliente) {
+    public void setCliente(Integer cliente) {
         this.cliente = cliente;
     }
 
-    public List<Produto> getPedidos() {
-        return pedidos;
-    }
-
-    public void setPedidos(List<Produto> pedidos) {
-        this.pedidos = pedidos;
-    }
-
-    public FormaPagmt getFormaPagmento() {
+    public Integer getFormaPagmento() {
         return formaPagmento;
     }
 
-    public void setFormaPagmento(FormaPagmt formaPagmento) {
+    public void setFormaPagmento(Integer formaPagmento) {
         this.formaPagmento = formaPagmento;
     }
 
-    public Entregador getEntregador() {
+    public Integer getEntregador() {
         return entregador;
     }
 
-    public void setEntregador(Entregador entregador) {
+    public void setEntregador(Integer entregador) {
         this.entregador = entregador;
     }
 
-    public Atendente getAtendente() {
+    public Integer getAtendente() {
         return atendente;
     }
 
-    public void setAtendente(Atendente atendente) {
+    public void setAtendente(Integer atendente) {
         this.atendente = atendente;
     }
-   
-   
-   
-    public double calcularValorTotal(List<Produto> produtos){
-       return 0;
-        
-        
+
+    public String getObs() {
+        return obs;
     }
-   
-   
+
+    public void setObs(String obs) {
+        this.obs = obs;
+    }
+
     
+   
 }

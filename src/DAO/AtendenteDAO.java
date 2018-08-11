@@ -55,6 +55,47 @@ public class AtendenteDAO {
         
         return atendentes;
     }
+    
+    
+    
+    public static Atendente validar(String usuario, String senha) {
+        Connection con;
+        con = Conexao.getConnection();
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        
+        Atendente atendente = new Atendente();
+        Boolean validado = false;
+        
+        try {
+            stmt = con.prepareStatement("SELECT * FROM atendente WHERE usuario = ? AND senha = ?;");
+            stmt.setString(1,usuario);
+            stmt.setString(2, senha);
+            rs = stmt.executeQuery();
+            
+            
+            while(rs.next()) {
+                Atendente a = new Atendente();
+                a.setId(rs.getInt("idatendente"));
+                a.setNome(rs.getString("nome"));
+                a.setCpf(rs.getLong("cpf"));
+                a.setUsuario(rs.getString("usuario"));
+                a.setSenha(rs.getString("senha"));
+                a.setEndereco(EnderecoDAO.read("atendente_idatendente", rs.getInt("idatendente")));
+                a.setTelefone(TelefoneDAO.read("atendente_idatendente", rs.getInt("idatendente")));
+                atendente = a;
+                validado = true;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(AtendenteDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally{
+            Conexao.closeConnection(con, stmt, rs);
+        }
+        
+        return validado ? atendente : null;
+    }
+    
+    
     public static Atendente read(int key) {
         Connection con;
         con = Conexao.getConnection();

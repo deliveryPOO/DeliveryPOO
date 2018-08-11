@@ -53,25 +53,25 @@ public class EntregadorDAO {
         
         return entregadores;
     }
-    public static Entregador read(int key) {
+    
+    public static List<Entregador> read() {
         Connection con;
         con = Conexao.getConnection();
         PreparedStatement stmt = null;
         ResultSet rs = null;
         
-        Entregador entregador = new Entregador();
+        List<Entregador> entregadores = new ArrayList<>();
         
         try {
-            stmt = con.prepareStatement("SELECT * FROM entregador WHERE identregador = ?;");
-            stmt.setInt(1,key);
+            stmt = con.prepareStatement("SELECT * FROM entregador;");
             rs = stmt.executeQuery();
             
-            while(rs.next()) {                
+            while(rs.next()) {
+                Entregador entregador = new Entregador();
                 entregador.setId(rs.getInt("identregador"));
                 entregador.setNome(rs.getString("nome"));
                 entregador.setCpf(rs.getLong("cpf"));
-                entregador.setTelefone(TelefoneDAO.read("entregador_identregador", rs.getInt("identregador")));
-                entregador.setEndereco(EnderecoDAO.read("entregador_identregador", rs.getInt("identregador")));
+                entregadores.add(entregador);
             }
         } catch (SQLException ex) {
             Logger.getLogger(ClienteDAO.class.getName()).log(Level.SEVERE, null, ex);
@@ -79,7 +79,7 @@ public class EntregadorDAO {
             Conexao.closeConnection(con, stmt, rs);
         }
         
-        return entregador;
+        return entregadores;
     }
     
     public static void create(Entregador p, Endereco e, Telefone t) {

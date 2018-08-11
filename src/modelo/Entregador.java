@@ -30,6 +30,9 @@ public class Entregador extends Pessoa {
         this.veiculo = veiculo;
     }
     
-    
+    @Override
+    public String toString() {
+        return this.getNome();
+    }
     
 }

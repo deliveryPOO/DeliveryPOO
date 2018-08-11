@@ -213,9 +213,9 @@ public class JanelaEditarPedido extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
-       TelaEditarCliente t=new TelaEditarCliente();
-        TelaPrincipal.jDesktopPane1.add(t);
-        t.setVisible(true);
+//        TelaEditarCliente t=new TelaEditarCliente();
+//        TelaPrincipal.jDesktopPane1.add(t);
+//        t.setVisible(true);
     }//GEN-LAST:event_btnEditarActionPerformed
 
 

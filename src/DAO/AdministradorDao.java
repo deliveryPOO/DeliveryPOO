@@ -137,4 +137,30 @@ public class AdministradorDao {
             Conexao.closeConnection(con, stmt, rs);
         }
     }
+    
+    public static Boolean validar(String usuario, String senha) {
+        Connection con;
+        con = Conexao.getConnection();
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        
+        Boolean validado = false;
+        
+        try {
+            stmt = con.prepareStatement("SELECT * FROM administrador WHERE usuario = ? AND senha = ?;");
+            stmt.setString(1, usuario);
+            stmt.setString(2, senha);
+            rs = stmt.executeQuery();
+            
+            while(rs.next()) {
+                validado = true;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(AdministradorDao.class.getName()).log(Level.SEVERE, null, ex);
+        } finally{
+            Conexao.closeConnection(con, stmt, rs);
+        }
+        
+        return validado;
+    }
 }

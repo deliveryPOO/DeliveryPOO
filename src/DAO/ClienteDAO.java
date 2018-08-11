@@ -42,7 +42,7 @@ public class ClienteDAO {
                 a.setId(rs.getInt("idcliente"));
                 a.setNome(rs.getString("nome"));
                 a.setCpf(rs.getLong("cpf"));
-                a.setTelefone(TelefoneDAO.read(rs.getInt("idcliente")));
+                a.setTelefone(TelefoneDAO.read("cliente_idcliente", rs.getInt("idcliente")));
                 clientes.add(a);
             }
         } catch (SQLException ex) {
@@ -72,8 +72,8 @@ public class ClienteDAO {
                 cliente.setId(rs.getInt("idcliente"));
                 cliente.setNome(rs.getString("nome"));
                 cliente.setCpf(rs.getLong("cpf"));
-                cliente.setTelefone(TelefoneDAO.read(rs.getInt("idcliente")));
-                cliente.setEndereco(EnderecoDAO.read(rs.getInt("idcliente")));
+                cliente.setTelefone(TelefoneDAO.read("cliente_idcliente", rs.getInt("idcliente")));
+                cliente.setEndereco(EnderecoDAO.read("cliente_idcliente", rs.getInt("idcliente")));
             }
         } catch (SQLException ex) {
             Logger.getLogger(ClienteDAO.class.getName()).log(Level.SEVERE, null, ex);

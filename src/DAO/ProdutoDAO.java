@@ -23,35 +23,66 @@ import modelo.Telefone;
  * @author vinicius
  */
 public class ProdutoDAO {
-//    public List<Produto> read() {
-//        Connection con;
-//        con = Conexao.getConnection();
-//        PreparedStatement stmt = null;
-//        ResultSet rs = null;
-//        
-//        List<Produto> produtos = new ArrayList<>();
-//        
-//        try {
-//            stmt = con.prepareStatement("SELECT * FROM produto");
-//            rs = stmt.executeQuery();
-//            
-//            while(rs.next()) {
-//                Produto a = new Produto();
-//                
-//                a.setNome(rs.getString("nome"));
-//                a.setPreco(rs.getDouble("preco"));
-//                a.setQtd(rs.getInt("qtd"));
+    public static List<Produto> read(String key) {
+        Connection con;
+        con = Conexao.getConnection();
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        
+        List<Produto> produtos = new ArrayList<>();
+        
+        try {
+            stmt = con.prepareStatement("SELECT * FROM produto WHERE descricao = ?;");
+            stmt.setString(1, key);
+            rs = stmt.executeQuery();
+            
+            while(rs.next()) {
+                Produto a = new Produto();
+                a.setId(rs.getInt("idproduto"));
+                a.setNome(rs.getString("descricao"));
+                a.setPreco(rs.getDouble("valor"));
+                a.setQtd(rs.getInt("qtd"));
 //                a.setItens(ItemDAO.read(rs.getInt("id")));
-//                produtos.add(a);
-//            }
-//        } catch (SQLException ex) {
-//            Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, null, ex);
-//        } finally{
-//            Conexao.closeConnection(con, stmt, rs);
-//        }
-//        
-//        return produtos;
-//    }
+                produtos.add(a);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally{
+            Conexao.closeConnection(con, stmt, rs);
+        }
+        
+        return produtos;
+    }
+    
+    public static List<Produto> read() {
+        Connection con;
+        con = Conexao.getConnection();
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        
+        List<Produto> produtos = new ArrayList<>();
+        
+        try {
+            stmt = con.prepareStatement("SELECT * FROM produto;");
+            rs = stmt.executeQuery();
+            
+            while(rs.next()) {
+                Produto a = new Produto();
+                a.setId(rs.getInt("idproduto"));
+                a.setNome(rs.getString("descricao"));
+                a.setPreco(rs.getDouble("valor"));
+                a.setQtd(rs.getInt("qtd"));
+//                a.setItens(ItemDAO.read(rs.getInt("id")));
+                produtos.add(a);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally{
+            Conexao.closeConnection(con, stmt, rs);
+        }
+        
+        return produtos;
+    }
     
     public static int create(Produto p) {
         Connection con;

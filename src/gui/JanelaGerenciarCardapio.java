@@ -5,7 +5,13 @@
  */
 package gui;
 
+import DAO.ClienteDAO;
+import DAO.ProdutoDAO;
 import static gui.TelaPrincipal.jDesktopPane1;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+import modelo.Cliente;
+import modelo.Produto;
 
 /**
  *
@@ -46,6 +52,11 @@ public class JanelaGerenciarCardapio extends javax.swing.JInternalFrame {
 
         btnBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/icons/icons8-pesquisar-16.png"))); // NOI18N
         btnBuscar.setText("Buscar");
+        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarActionPerformed(evt);
+            }
+        });
 
         tbCardapio.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -155,6 +166,20 @@ public class JanelaGerenciarCardapio extends javax.swing.JInternalFrame {
         jDesktopPane1.add(t);
         t.setVisible(true);
     }//GEN-LAST:event_btnEditarActionPerformed
+
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+        List<Produto> produtos = ProdutoDAO.read(txtBuscar.getText());
+        DefaultTableModel modeloTable = (DefaultTableModel)tbCardapio.getModel();
+        modeloTable.setNumRows(0);
+        
+        for(Produto p: produtos) {
+            modeloTable.addRow(new Object[]{
+                p.getId(),
+                p.getNome(),
+                p.getPreco()
+            });
+        }
+    }//GEN-LAST:event_btnBuscarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
