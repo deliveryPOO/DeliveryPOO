@@ -21,7 +21,7 @@ import modelo.Endereco;
  */
 public class EnderecoDAO {
     
-    public static List<Endereco> read(int idPessoa) {
+    public static List<Endereco> read(String tipoPessoa, int idPessoa) {
         Connection con;
         con = Conexao.getConnection();
         PreparedStatement stmt = null;
@@ -30,7 +30,7 @@ public class EnderecoDAO {
         List<Endereco> enderecos = new ArrayList<>();
         
         try {
-            stmt = con.prepareStatement("SELECT * FROM endereco WHERE cliente_idcliente = ?");
+            stmt = con.prepareStatement("SELECT * FROM endereco WHERE " + tipoPessoa + " = ?");
             stmt.setInt(1, idPessoa);
             rs = stmt.executeQuery();
             

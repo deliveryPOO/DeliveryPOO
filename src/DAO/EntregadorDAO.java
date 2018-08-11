@@ -22,7 +22,7 @@ import modelo.Telefone;
  * @author vinicius
  */
 public class EntregadorDAO {
-    public List<Entregador> read() {
+    public static List<Entregador> read(String key) {
         Connection con;
         con = Conexao.getConnection();
         PreparedStatement stmt = null;
@@ -31,17 +31,18 @@ public class EntregadorDAO {
         List<Entregador> entregadores = new ArrayList<>();
         
         try {
-            stmt = con.prepareStatement("SELECT * FROM entregador");
+            stmt = con.prepareStatement("SELECT * FROM entregador WHERE nome = ?;");
+            stmt.setString(1,key);
             rs = stmt.executeQuery();
+            
             
             while(rs.next()) {
                 Entregador a = new Entregador();
-                
+                a.setId(rs.getInt("identregador"));
                 a.setNome(rs.getString("nome"));
                 a.setCpf(rs.getLong("cpf"));
-                a.setEndereco(EnderecoDAO.read(rs.getInt("id")));
-                a.setTelefone(TelefoneDAO.read(rs.getInt("id")));
-                a.setVeiculo(VeiculoDAO.read(rs.getInt("id")));
+                a.setEndereco(EnderecoDAO.read("entregador_identregador", rs.getInt("identregador")));
+                a.setTelefone(TelefoneDAO.read("entregador_identregador", rs.getInt("identregador")));
                 entregadores.add(a);
             }
         } catch (SQLException ex) {
@@ -52,24 +53,56 @@ public class EntregadorDAO {
         
         return entregadores;
     }
+    public static Entregador read(int key) {
+        Connection con;
+        con = Conexao.getConnection();
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        
+        Entregador entregador = new Entregador();
+        
+        try {
+            stmt = con.prepareStatement("SELECT * FROM entregador WHERE identregador = ?;");
+            stmt.setInt(1,key);
+            rs = stmt.executeQuery();
+            
+            while(rs.next()) {                
+                entregador.setId(rs.getInt("identregador"));
+                entregador.setNome(rs.getString("nome"));
+                entregador.setCpf(rs.getLong("cpf"));
+                entregador.setTelefone(TelefoneDAO.read("entregador_identregador", rs.getInt("identregador")));
+                entregador.setEndereco(EnderecoDAO.read("entregador_identregador", rs.getInt("identregador")));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ClienteDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally{
+            Conexao.closeConnection(con, stmt, rs);
+        }
+        
+        return entregador;
+    }
     
-    public void create(Entregador p, Endereco e, Telefone t) {
+    public static void create(Entregador p, Endereco e, Telefone t) {
         Connection con;
         con = Conexao.getConnection();
         PreparedStatement stmt = null;
         ResultSet rs = null;
         
         try {
-            stmt = con.prepareStatement("INSERT INTO entregador (nome, cpf) VALUES (?, ?)");
+            stmt = con.prepareStatement("INSERT INTO entregador (nome, cpf) VALUES (?, ?);");
             stmt.setString(1, p.getNome());
             stmt.setLong(2, p.getCpf());
-            rs = stmt.executeQuery();
+            stmt.executeUpdate();
         
-            stmt = con.prepareStatement("SELECT LAST_INSERT_ID()");
+            stmt = con.prepareStatement("SELECT MAX(identregador) FROM entregador;");
             rs = stmt.executeQuery();
             
-            EnderecoDAO.create(e, rs.getInt(1));
-            TelefoneDAO.create(t, rs.getInt(1));
+            int idEntregador = 0;
+            while(rs.next()){
+                idEntregador=rs.getInt(1);
+            }
+            EnderecoDAO.create(e,"entregador_identregador",idEntregador);
+            TelefoneDAO.create(t,"entregador_identregador",idEntregador);
         
         } catch (SQLException ex) {
             Logger.getLogger(EntregadorDAO.class.getName()).log(Level.SEVERE, null, ex);
@@ -78,17 +111,17 @@ public class EntregadorDAO {
         }
     }
     
-    public void update(Entregador p) {
+    public static void update(Entregador p) {
         Connection con;
         con = Conexao.getConnection();
         PreparedStatement stmt = null;
         ResultSet rs = null;
         
         try {
-            stmt = con.prepareStatement("UPDATE entregador set nome = ?, cpf = ? WHERE id = ?");
+            stmt = con.prepareStatement("UPDATE entregador set nome = ?, cpf = ? WHERE id = ?;");
             stmt.setString(1, p.getNome());
             stmt.setLong(2, p.getCpf());
-            stmt.setInt(5, p.getId());
+            stmt.setInt(3, p.getId());
             rs = stmt.executeQuery();        
         } catch (SQLException ex) {
             Logger.getLogger(EntregadorDAO.class.getName()).log(Level.SEVERE, null, ex);

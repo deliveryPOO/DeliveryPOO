@@ -5,6 +5,11 @@
  */
 package gui;
 
+import DAO.EntregadorDAO;
+import modelo.Endereco;
+import modelo.Entregador;
+import modelo.Telefone;
+
 /**
  *
  * @author Cyborg
@@ -183,7 +188,24 @@ public class TelaCadastrarEntregador extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
-        // TODO add your handling code here:
+        Entregador a = new Entregador();
+        Endereco e = new Endereco();
+        Telefone t = new Telefone();
+        
+        a.setNome(txtNome.getText());
+        a.setCpf(Long.parseLong(txtCpf.getText()));
+        e.setRua(txtRua.getText());
+        e.setNumero(Integer.parseInt(txtNumero.getText()));
+        e.setBairro(txtBairro.getText());
+        e.setPontoRef(txtReferencia.getText());
+        e.setComplemento(txtComplemento.getText());
+        
+        t.setDdd(Byte.parseByte(txtDdd.getText()));
+        t.setNumero(Integer.parseInt(txtTelefone.getText()));
+        
+        
+        EntregadorDAO.create(a, e, t);
+        
     }//GEN-LAST:event_btnSalvarActionPerformed
 
 

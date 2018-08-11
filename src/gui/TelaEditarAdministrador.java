@@ -5,6 +5,9 @@
  */
 package gui;
 
+import DAO.AdministradorDao;
+import modelo.Administrador;
+
 /**
  *
  * @author Cyborg
@@ -13,10 +16,18 @@ public class TelaEditarAdministrador extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form TelaEditarAdministrador
+     * @param idAtendente
      */
+     public TelaEditarAdministrador(int idAdministrador) {
+        initComponents();
+        loadFields(AdministradorDao.read(idAdministrador));
+    }
+    
     public TelaEditarAdministrador() {
         initComponents();
     }
+   
+  
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -214,7 +225,22 @@ public class TelaEditarAdministrador extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+private void loadFields(Administrador administrador) {
+        txtNome.setText(administrador.getNome());
+        txtCpf.setText(administrador.getCpf().toString());
+        txtUsuario.setText(administrador.getUsuario());
+        pfSenha.setText(administrador.getSenha());
+       txtRua.setText(administrador.getEndereco().get(0).getRua());
+        txtBairro.setText(administrador.getEndereco().get(0).getBairro());
+       txtNumero.setText(administrador.getEndereco().get(0).getNumero().toString());
+        txtReferencia.setText(administrador.getEndereco().get(0).getPontoRef());
+        txtComplemento.setText(administrador.getEndereco().get(0).getComplemento());
+        txtDdd.setText(administrador.getTelefone().get(0).getDdd().toString());
+        txtTelefone.setText(administrador.getTelefone().get(0).getNumero().toString());
 
+    
+             
+    }
     private void BtnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSalvarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_BtnSalvarActionPerformed
