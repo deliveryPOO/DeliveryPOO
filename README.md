@@ -11,3 +11,5 @@ Administradores não podem efeturar um pedido.
 ## Observações
 
 A operação de editar um registro não foi implementado.
+
+O arquivo banco.sql tem a estrutura completa do banco de dados utlizado no sistema.
