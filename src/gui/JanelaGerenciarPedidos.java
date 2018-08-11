@@ -18,6 +18,9 @@ public class JanelaGerenciarPedidos extends javax.swing.JInternalFrame {
      */
     public JanelaGerenciarPedidos() {
         initComponents();
+        if(TelaLogin.tipoUsuario) {
+            btnNovo.setEnabled(false);
+        }
     }
 
     /**

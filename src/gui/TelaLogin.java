@@ -7,6 +7,7 @@ package gui;
 
 import DAO.AdministradorDao;
 import DAO.AtendenteDAO;
+import static java.lang.System.exit;
 import modelo.Atendente;
 
 /**

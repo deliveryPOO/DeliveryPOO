@@ -371,6 +371,8 @@ public class JanelaNovoPedido extends javax.swing.JInternalFrame {
         p.setObs(txtOberservacao.getText());
         
         int idPedido = PedidoDAO.create(p);
+        
+        
     }//GEN-LAST:event_btnConfirmarActionPerformed
 
 

@@ -22,6 +22,10 @@ public class TelaPrincipal extends javax.swing.JFrame {
      */
     public TelaPrincipal() {
         initComponents();
+        if(!TelaLogin.tipoUsuario) {
+            btnAtendentes.setEnabled(false);
+            btnAdmins.setEnabled(false);
+        }
     }
     /**
      * This method is called from within the constructor to initialize the form.
