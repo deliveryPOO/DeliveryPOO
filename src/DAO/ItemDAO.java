@@ -22,7 +22,7 @@ import modelo.Item;
  */
 public class ItemDAO {
     
-    public static List<Item> read(Integer idProduto) {
+    public static List<Item> read(String key) {
         Connection con;
         con = Conexao.getConnection();
         PreparedStatement stmt = null;
@@ -31,16 +31,17 @@ public class ItemDAO {
         List<Item> itens = new ArrayList<>();
         
         try {
-            for(Integer p: Produto_itemDao.readItens(idProduto)) {
-                stmt = con.prepareStatement("SELECT * FROM item WHERE id = ?");
-                stmt.setInt(1, p);
-                rs = stmt.executeQuery();
+            stmt = con.prepareStatement("SELECT * FROM item WHERE nome = ?;");
+            stmt.setString(1,key);
+            rs = stmt.executeQuery();
                     
-                while(rs.next()) {
-                    Item a = new Item();
-                    a.setNome(rs.getString("nome"));
-                    a.setQtdEstoque(rs.getInt("qtd")); 
-                }
+            while(rs.next()) {
+                Item a = new Item();
+                a.setId(rs.getInt("iditem"));
+                a.setNome(rs.getString("nome"));
+                a.setQtdEstoque(rs.getInt("qtdEstoque")); 
+                a.setValor(rs.getDouble("valor"));
+                itens.add(a);
             }
             
         } catch (SQLException ex) {
@@ -53,6 +54,39 @@ public class ItemDAO {
     }
     
     
+    public static List<Item> read() {
+        Connection con;
+        con = Conexao.getConnection();
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+     
+        List<Item> itens = new ArrayList<>();
+        
+        try {
+            stmt = con.prepareStatement("SELECT * FROM item;");
+            rs = stmt.executeQuery();
+                    
+            while(rs.next()) {
+                Item a = new Item();
+                a.setId(rs.getInt("iditem"));
+                a.setNome(rs.getString("nome"));
+                a.setQtdEstoque(rs.getInt("qtdEstoque")); 
+                a.setValor(rs.getDouble("valor"));
+                itens.add(a);
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(ItemDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally{
+            Conexao.closeConnection(con, stmt, rs);
+        }
+        
+        return itens;
+    }
+    
+    
+    
+    
     public static void create(Item t) {
         Connection con;
         con = Conexao.getConnection();
@@ -60,10 +94,11 @@ public class ItemDAO {
         ResultSet rs = null;
         
         try {
-            stmt = con.prepareStatement("INSERT INTO item(nome, qtd) VALUES (?,?)");
+            stmt = con.prepareStatement("INSERT INTO item (nome, qtdEstoque, valor) VALUES (?,?,?);");
             stmt.setString(1, t.getNome());
             stmt.setInt(2, t.getQtdEstoque());
-            rs = stmt.executeQuery();
+            stmt.setDouble(3, t.getValor());
+            stmt.executeUpdate();
             
         } catch (SQLException ex) {
             Logger.getLogger(ItemDAO.class.getName()).log(Level.SEVERE, null, ex);
@@ -88,6 +123,23 @@ public class ItemDAO {
             Logger.getLogger(ItemDAO.class.getName()).log(Level.SEVERE, null, ex);
         } finally{
             Conexao.closeConnection(con, stmt, rs);
+        }
+    }
+    
+    public static void delete(int idItem) {
+        Connection con;
+        con = Conexao.getConnection();
+        PreparedStatement stmt = null;
+        
+        try {
+            stmt = con.prepareStatement("DELETE FROM item WHERE iditem =?;");
+            stmt.setInt(1, idItem);
+            stmt.executeUpdate();
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(TelefoneDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally{
+            Conexao.closeConnection(con, stmt);
         }
     }
 }

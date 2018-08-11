@@ -11,10 +11,19 @@ package modelo;
  */
 public class Item {
     
+    private Integer id;
     private String nome;
     private double valor;
     private Integer qtdEstoque;
 
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+    
     public String getNome() {
         return nome;
     }

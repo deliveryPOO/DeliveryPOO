@@ -91,4 +91,21 @@ public class TelefoneDAO {
             Conexao.closeConnection(con, stmt, rs);
         }
     }
+    
+    public static void delete(String tipoPessoa, int idPessoa ) {
+        Connection con;
+        con = Conexao.getConnection();
+        PreparedStatement stmt = null;
+        
+        try {
+            stmt = con.prepareStatement("DELETE FROM telefone WHERE " + tipoPessoa + " = ?;");
+            stmt.setInt(1, idPessoa);
+            stmt.executeUpdate();
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(TelefoneDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally{
+            Conexao.closeConnection(con, stmt);
+        }
+    }
 }

@@ -117,6 +117,25 @@ public class ClienteDAO {
         }
     }
     
+    public static void delete(int idCliente) {
+        Connection con;
+        con = Conexao.getConnection();
+        PreparedStatement stmt = null;
+        
+        try {
+            TelefoneDAO.delete("cliente_idcliente", idCliente);
+            EnderecoDAO.delete("cliente_idcliente", idCliente);
+            stmt = con.prepareStatement("DELETE FROM cliente WHERE idcliente = ?;");
+            stmt.setInt(1, idCliente);
+            stmt.executeUpdate();
+        
+        } catch (SQLException ex) {
+            Logger.getLogger(ClienteDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally{
+            Conexao.closeConnection(con, stmt);
+        }
+    }
+    
     public void update(Cliente p) {
         Connection con;
         con = Conexao.getConnection();

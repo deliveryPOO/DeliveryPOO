@@ -5,7 +5,13 @@
  */
 package gui;
 
+import DAO.ClienteDAO;
+import DAO.ItemDAO;
 import static gui.TelaPrincipal.jDesktopPane1;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+import modelo.Cliente;
+import modelo.Item;
 
 /**
  *
@@ -44,34 +50,27 @@ public class JanelaGerenciarEstoque extends javax.swing.JInternalFrame {
 
         tbEstoque.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "Item", "Quantidade em estoque"
+                "Id", "Item", "Quantidade em estoque", "Preco"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.Integer.class
-            };
-            boolean[] canEdit = new boolean [] {
-                false, true
+                java.lang.Integer.class, java.lang.String.class, java.lang.Integer.class, java.lang.Double.class
             };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
-            }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
             }
         });
         jScrollPane1.setViewportView(tbEstoque);
@@ -80,6 +79,11 @@ public class JanelaGerenciarEstoque extends javax.swing.JInternalFrame {
 
         btnBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/icons/icons8-pesquisar-16.png"))); // NOI18N
         btnBuscar.setText("Buscar");
+        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarActionPerformed(evt);
+            }
+        });
 
         btnNovo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/icons/icons8-mais-48.png"))); // NOI18N
         btnNovo.setText("Novo Item");
@@ -91,6 +95,11 @@ public class JanelaGerenciarEstoque extends javax.swing.JInternalFrame {
 
         btnExcluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/icons/icons8-lixo-48.png"))); // NOI18N
         btnExcluir.setText("Excluir");
+        btnExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExcluirActionPerformed(evt);
+            }
+        });
 
         btnSalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/icons/icons8-salvar-como-48 (1).png"))); // NOI18N
         btnSalvar.setText("Salvar alterações");
@@ -161,6 +170,25 @@ public class JanelaGerenciarEstoque extends javax.swing.JInternalFrame {
         jDesktopPane1.add(t);
         t.setVisible(true);
     }//GEN-LAST:event_btnNovoActionPerformed
+
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+        List<Item> itens = ItemDAO.read(txtBuscar.getText());
+        DefaultTableModel modeloTable = (DefaultTableModel)tbEstoque.getModel();
+        modeloTable.setNumRows(0);
+        
+        for(Item item: itens) {
+            modeloTable.addRow(new Object[]{
+                item.getId(),
+                item.getNome(),
+                item.getQtdEstoque(),
+                item.getValor()
+            });
+        }
+    }//GEN-LAST:event_btnBuscarActionPerformed
+
+    private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
+        ItemDAO.delete((int)tbEstoque.getValueAt(tbEstoque.getSelectedRow(), 0));
+    }//GEN-LAST:event_btnExcluirActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

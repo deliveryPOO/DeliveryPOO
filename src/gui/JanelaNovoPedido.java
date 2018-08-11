@@ -237,9 +237,9 @@ public class JanelaNovoPedido extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnNovoActionPerformed
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
-        TelaEditarCliente t=new TelaEditarCliente();
-        TelaPrincipal.jDesktopPane1.add(t);
-        t.setVisible(true);
+//        TelaEditarCliente t=new TelaEditarCliente();
+//        TelaPrincipal.jDesktopPane1.add(t);
+//        t.setVisible(true);
     }//GEN-LAST:event_btnEditarActionPerformed
 
 
