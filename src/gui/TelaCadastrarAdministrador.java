@@ -5,6 +5,11 @@
  */
 package gui;
 
+import DAO.AdministradorDao;
+import modelo.Administrador;
+import modelo.Endereco;
+import modelo.Telefone;
+
 /**
  *
  * @author Cyborg
@@ -216,7 +221,25 @@ public class TelaCadastrarAdministrador extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BtnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSalvarActionPerformed
-        // TODO add your handling code here:
+        Administrador a = new Administrador();
+        Endereco e = new Endereco();
+        Telefone t = new Telefone();
+        
+        a.setNome(txtNome.getText());
+        a.setCpf(Long.parseLong(txtCpf.getText()));
+        a.setUsuario(txtUsuario.getText());
+        a.setSenha(pfSenha.getText());
+        e.setRua(txtRua.getText());
+        e.setNumero(Integer.parseInt(txtNumero.getText()));
+        e.setBairro(txtBairro.getText());
+        e.setPontoRef(txtReferencia.getText());
+        e.setComplemento(txtComplemento.getText());
+        
+        t.setDdd(Byte.parseByte(txtDdd.getText()));
+        t.setNumero(Integer.parseInt(txtTelefone.getText()));
+        
+        
+        AdministradorDao.create(a, e, t);
     }//GEN-LAST:event_BtnSalvarActionPerformed
 
 

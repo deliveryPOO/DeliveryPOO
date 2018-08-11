@@ -5,6 +5,11 @@
  */
 package gui;
 
+import DAO.AtendenteDAO;
+import javax.swing.table.DefaultTableModel;
+import modelo.Atendente;
+import modelo.Endereco;
+
 /**
  *
  * @author Cyborg
@@ -13,11 +18,19 @@ public class TelaEditarAtendente extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form TelaEditarAtendente
+     * 
+     * @param idAtendente
      */
+    public TelaEditarAtendente(int idAtendente) {
+        initComponents();
+        loadFields(AtendenteDAO.read(idAtendente));
+    }
+    
     public TelaEditarAtendente() {
         initComponents();
     }
-
+   
+       
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -215,7 +228,24 @@ public class TelaEditarAtendente extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+    
+     private void loadFields(Atendente atendente) {
+        txtNome.setText(atendente.getNome());
+        txtCpf.setText(atendente.getCpf().toString());
+        txtUsuario.setText(atendente.getUsuario());
+        pfSenha.setText(atendente.getSenha());
+       txtRua.setText(atendente.getEndereco().get(0).getRua());
+        txtBairro.setText(atendente.getEndereco().get(0).getBairro());
+       txtNumero.setText(atendente.getEndereco().get(0).getNumero().toString());
+        txtReferencia.setText(atendente.getEndereco().get(0).getPontoRef());
+        txtComplemento.setText(atendente.getEndereco().get(0).getComplemento());
+        txtDdd.setText(atendente.getTelefone().get(0).getDdd().toString());
+        txtTelefone.setText(atendente.getTelefone().get(0).getNumero().toString());
 
+    
+             
+    }
+     
     private void BtnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSalvarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_BtnSalvarActionPerformed
@@ -247,4 +277,5 @@ public class TelaEditarAtendente extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txtTelefone;
     private javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables
+
 }

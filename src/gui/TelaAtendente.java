@@ -5,6 +5,11 @@
  */
 package gui;
 
+import DAO.AtendenteDAO;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+import modelo.Atendente;
+
 /**
  *
  * @author Cyborg
@@ -16,6 +21,7 @@ public class TelaAtendente extends javax.swing.JInternalFrame {
      */
     public TelaAtendente() {
         initComponents();
+      
     }
 
     /**
@@ -42,21 +48,21 @@ public class TelaAtendente extends javax.swing.JInternalFrame {
 
         tbAtendente.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Nome", "Usuário", "CPF", "Endereco", "Telefone"
+                "ID", "Nome", "CPF", "Usuário", "DDD", "Telefone"
             }
         ));
         jScrollPane1.setViewportView(tbAtendente);
@@ -80,6 +86,11 @@ public class TelaAtendente extends javax.swing.JInternalFrame {
         btnBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/icons/icons8-pesquisar-24.png"))); // NOI18N
         btnBuscar.setBorder(null);
         btnBuscar.setBorderPainted(false);
+        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarActionPerformed(evt);
+            }
+        });
 
         btnExcluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/icons/icons8-lixo-48.png"))); // NOI18N
         btnExcluir.setText("Excluir");
@@ -152,10 +163,27 @@ public class TelaAtendente extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnNovoActionPerformed
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
-        TelaEditarAtendente t=new TelaEditarAtendente();
+        TelaEditarAtendente t = new TelaEditarAtendente((int)tbAtendente.getValueAt(tbAtendente.getSelectedRow(), 0));
         TelaPrincipal.jDesktopPane1.add(t);
         t.setVisible(true);
     }//GEN-LAST:event_btnEditarActionPerformed
+
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+         List<Atendente> atendentes = AtendenteDAO.read(txtBuscar.getText());
+        DefaultTableModel modeloTable = (DefaultTableModel)tbAtendente.getModel();
+        modeloTable.setNumRows(0);
+        
+        for(Atendente p: atendentes) {
+            modeloTable.addRow(new Object[]{
+                p.getId(),
+                p.getNome(),
+                p.getCpf() ,
+                p.getUsuario(),
+                p.getTelefone().size() > 0 ? p.getTelefone().get(0).getDdd() : "No",
+                p.getTelefone().size() > 0 ? p.getTelefone().get(0).getNumero(): "No",
+            });
+        }
+    }//GEN-LAST:event_btnBuscarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -21,7 +21,7 @@ import modelo.Telefone;
  */
 public class TelefoneDAO {
     
-    public static List<Telefone> read(int idPessoa) {
+    public static List<Telefone> read(String tipoPessoa, int idPessoa) {
         Connection con;
         con = Conexao.getConnection();
         PreparedStatement stmt = null;
@@ -30,7 +30,7 @@ public class TelefoneDAO {
         List<Telefone> telefones = new ArrayList<>();
         
         try {
-            stmt = con.prepareStatement("SELECT * FROM telefone WHERE cliente_idcliente = ?");
+            stmt = con.prepareStatement("SELECT * FROM telefone WHERE " + tipoPessoa + "  = ?");
             stmt.setInt(1, idPessoa);
             rs = stmt.executeQuery();
             

@@ -5,6 +5,9 @@
  */
 package gui;
 
+import DAO.EntregadorDAO;
+import modelo.Entregador;
+
 /**
  *
  * @author Cyborg
@@ -13,11 +16,16 @@ public class TelaEditarEntregador extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form TelaEditarEntregador
+     * @param idEntregador
      */
-    public TelaEditarEntregador() {
+    public TelaEditarEntregador(int idEntregador) {
         initComponents();
+        loadFields(EntregadorDAO.read(idEntregador));
     }
 
+      public TelaEditarEntregador() {
+        initComponents();
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -181,7 +189,20 @@ public class TelaEditarEntregador extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+private void loadFields(Entregador entregador) {
+        txtNome.setText(entregador.getNome());
+        txtCpf.setText(entregador.getCpf().toString());
+       txtRua.setText(entregador.getEndereco().get(0).getRua());
+        txtBairro.setText(entregador.getEndereco().get(0).getBairro());
+       txtNumero.setText(entregador.getEndereco().get(0).getNumero().toString());
+        txtReferencia.setText(entregador.getEndereco().get(0).getPontoRef());
+        txtComplemento.setText(entregador.getEndereco().get(0).getComplemento());
+        txtDdd.setText(entregador.getTelefone().get(0).getDdd().toString());
+        txtTelefone.setText(entregador.getTelefone().get(0).getNumero().toString());
 
+    
+             
+    }
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnSalvarActionPerformed
